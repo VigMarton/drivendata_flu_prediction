@@ -1,0 +1,12 @@
+{
+  "catboost": {
+    "h1n1_vaccine": 0.8712142781285952,
+    "mean_auc": 0.8680786450433708,
+    "seasonal_vaccine": 0.8649430119581466
+  },
+  "lightgbm": {
+    "h1n1_vaccine": 0.8693502201024521,
+    "mean_auc": 0.866622266655704,
+    "seasonal_vaccine": 0.8638943132089557
+  }
+}

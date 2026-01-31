@@ -47,11 +47,16 @@ def _sample_catboost(rng: np.random.RandomState) -> Dict[str, object]:
     }
 
 
-def _prepare_cats(X: pd.DataFrame, cat_cols: list[str]) -> Tuple[pd.DataFrame, list[int]]:
+def _prepare_cats(
+    X: pd.DataFrame, cat_cols: list[str], *, for_catboost: bool = False
+) -> Tuple[pd.DataFrame, list[int]]:
     X_copy = X.copy()
     cat_indices = [X_copy.columns.get_loc(c) for c in cat_cols]
     for c in cat_cols:
-        X_copy[c] = X_copy[c].astype("category")
+        if for_catboost:
+            X_copy[c] = X_copy[c].fillna("__MISSING__").astype(str)
+        else:
+            X_copy[c] = X_copy[c].astype("category")
     return X_copy, cat_indices
 
 
@@ -63,8 +68,7 @@ def tune_gbdt(
     best_score = -1.0
     best_metrics: Dict[str, float] = {}
 
-    num_cols, cat_cols = infer_feature_columns(X)
-    X_prep, cat_indices = _prepare_cats(X, cat_cols)
+    _, cat_cols = infer_feature_columns(X)
 
     for _ in range(cfg.n_trials):
         if cfg.model_type == "lightgbm":
@@ -77,7 +81,8 @@ def tune_gbdt(
             for target in y.columns:
                 oof[target] = 0.0
             for tr_idx, va_idx in make_stratified_folds(y, 3, cfg.seed):
-                X_tr, X_va = X_prep.iloc[tr_idx], X_prep.iloc[va_idx]
+                X_tr, cat_indices = _prepare_cats(X.iloc[tr_idx], cat_cols)
+                X_va, _ = _prepare_cats(X.iloc[va_idx], cat_cols)
                 for target in y.columns:
                     y_tr = y[target].iloc[tr_idx]
                     y_va = y[target].iloc[va_idx]
@@ -101,7 +106,10 @@ def tune_gbdt(
             for target in y.columns:
                 oof[target] = 0.0
             for tr_idx, va_idx in make_stratified_folds(y, 3, cfg.seed):
-                X_tr, X_va = X_prep.iloc[tr_idx], X_prep.iloc[va_idx]
+                X_tr, cat_indices = _prepare_cats(
+                    X.iloc[tr_idx], cat_cols, for_catboost=True
+                )
+                X_va, _ = _prepare_cats(X.iloc[va_idx], cat_cols, for_catboost=True)
                 for target in y.columns:
                     y_tr = y[target].iloc[tr_idx]
                     y_va = y[target].iloc[va_idx]
