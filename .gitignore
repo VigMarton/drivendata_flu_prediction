@@ -51,13 +51,21 @@ Desktop.ini
 # models/
 # runs/
 # logs/
-#
-# # Common large binary artifacts
+
+# Temporary files
+tmp/
+**/tmp/
+*.tmp
+*.temp
+
+# Common data / binary artifacts
+# (keep what you want versioned commented; you asked to ignore TSV + pickle)
 # *.csv
+*.tsv
 # *.parquet
 # *.feather
-# *.pkl
-# *.pickle
+*.pkl
+*.pickle
 # *.joblib
 # *.h5
 # *.hdf5
@@ -67,4 +75,3 @@ Desktop.ini
 # *.ckpt
 # *.npy
 # *.npz
-
