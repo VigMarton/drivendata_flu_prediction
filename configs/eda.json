@@ -1,0 +1,5 @@
+{
+  "experiment_name": "eda",
+  "data_dir": "data",
+  "runs_dir": "runs"
+}

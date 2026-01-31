@@ -1,0 +1,13 @@
+,cardinality
+employment_occupation,24
+employment_industry,22
+hhs_geo_region,10
+age_group,5
+education,5
+race,4
+employment_status,4
+income_poverty,4
+rent_or_own,3
+marital_status,3
+census_msa,3
+sex,2

@@ -1,0 +1,14 @@
+{
+  "experiment_name": "multitask_nn",
+  "data_dir": "data",
+  "runs_dir": "runs",
+  "n_splits": 5,
+  "seed": 42,
+  "epochs": 30,
+  "batch_size": 256,
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "hidden_sizes": [128, 64],
+  "dropout": 0.2,
+  "early_stopping_rounds": 5
+}

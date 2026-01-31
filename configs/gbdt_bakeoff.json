@@ -1,0 +1,33 @@
+{
+  "experiment_name": "gbdt_bakeoff",
+  "data_dir": "data",
+  "runs_dir": "runs",
+  "n_splits": 5,
+  "seed": 42,
+  "lightgbm": {
+    "early_stopping_rounds": 50,
+    "params": {
+      "n_estimators": 800,
+      "learning_rate": 0.05,
+      "num_leaves": 64,
+      "max_depth": -1,
+      "min_data_in_leaf": 50,
+      "feature_fraction": 0.8,
+      "bagging_fraction": 0.8,
+      "bagging_freq": 1,
+      "objective": "binary",
+      "n_jobs": 4
+    }
+  },
+  "catboost": {
+    "early_stopping_rounds": 50,
+    "params": {
+      "iterations": 800,
+      "learning_rate": 0.05,
+      "depth": 6,
+      "l2_leaf_reg": 3.0,
+      "loss_function": "Logloss",
+      "eval_metric": "AUC"
+    }
+  }
+}

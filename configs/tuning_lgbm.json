@@ -1,0 +1,9 @@
+{
+  "experiment_name": "tuning_lgbm",
+  "data_dir": "data",
+  "runs_dir": "runs",
+  "model_type": "lightgbm",
+  "n_trials": 25,
+  "seed": 42,
+  "early_stopping_rounds": 50
+}

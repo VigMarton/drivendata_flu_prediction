@@ -1,0 +1,15 @@
+{
+  "experiment_name": "blend",
+  "data_dir": "data",
+  "runs_dir": "runs",
+  "seed": 42,
+  "n_trials": 300,
+  "oof_files": [
+    "runs/gbdt_bakeoff/oof_lightgbm.csv",
+    "runs/gbdt_bakeoff/oof_catboost.csv"
+  ],
+  "test_files": [
+    "runs/gbdt_bakeoff/test_lightgbm.csv",
+    "runs/gbdt_bakeoff/test_catboost.csv"
+  ]
+}

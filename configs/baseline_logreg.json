@@ -1,0 +1,11 @@
+{
+  "experiment_name": "baseline_logreg",
+  "data_dir": "data",
+  "runs_dir": "runs",
+  "n_splits": 5,
+  "seed": 42,
+  "use_scaler": false,
+  "C": 1.0,
+  "solver": "liblinear",
+  "max_iter": 300
+}

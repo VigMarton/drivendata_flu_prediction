@@ -1,0 +1,9 @@
+{
+  "experiment_name": "tuning_catboost",
+  "data_dir": "data",
+  "runs_dir": "runs",
+  "model_type": "catboost",
+  "n_trials": 25,
+  "seed": 42,
+  "early_stopping_rounds": 50
+}
