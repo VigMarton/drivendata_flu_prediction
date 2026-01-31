@@ -50,7 +50,29 @@ Segmenting uses a global LightGBM plus segment‑specific models blended per row
 - **`doctor_recc_any`**: mean AUC `0.85537` (small lift, weaker than `health_worker`)
 - **Conclusion**: Only `health_worker` looks worth carrying forward; gains are modest.
 
+## Calibration‑Aware Blending
+- **Base blend**: mean AUC `0.869073`
+- **Sigmoid‑calibrated blend**: mean AUC `0.869079` (no meaningful change)
+- **Isotonic‑calibrated blend**: mean AUC `0.869758` (**+0.000684**)
+- **Conclusion**: Isotonic calibration improves the blend and is the current best.
+
+## Rule‑Augmented Post‑Processing
+- **Base blend**: mean AUC `0.869073`
+- **Doctor‑only rule best**: mean AUC `0.869075` (delta `+0.000002`)
+- **Doctor + health_worker best**: mean AUC `0.869086` (delta `+0.000012`)
+- **Conclusion**: Gains are negligible; discard.
+
+## Block / Row‑Pattern Analysis
+- **Unsupervised breakpoints**: no stable block regimes beyond the train/test boundary.
+- **Label impact by detected blocks**: deltas within ±0.004 across blocks.
+- **Conclusion**: No meaningful block‑specific effect; discard.
+
+## Distribution Shift Checks
+- **Train vs test drift AUC**: `0.5014` (near random).
+- **Top feature shifts**: all small (largest shift_score ~0.013).
+- **Conclusion**: No actionable drift; CV likely representative.
+
 ## Overall Best So Far
-- **Best CV score**: Blend (LightGBM + CatBoost) at **mean AUC `0.86907`**
-- **Promising add‑ons**: survey‑structure features, `health_worker` segmentation
+- **Best CV score**: Isotonic‑calibrated blend at **mean AUC `0.869758`**
+- **Promising add‑ons**: survey‑structure features, `health_worker` segmentation (modest)
 
