@@ -1,0 +1,15 @@
+{
+  "best_metrics": {
+    "h1n1_vaccine": 0.8703792357046192,
+    "mean_auc": 0.8669417665817565,
+    "seasonal_vaccine": 0.8635042974588938
+  },
+  "best_params": {
+    "depth": 5,
+    "eval_metric": "AUC",
+    "iterations": 1071,
+    "l2_leaf_reg": 7.976195410250031,
+    "learning_rate": 0.04512234654985014,
+    "loss_function": "Logloss"
+  }
+}
