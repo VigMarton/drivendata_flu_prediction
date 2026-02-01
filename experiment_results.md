@@ -56,6 +56,12 @@ Segmenting uses a global LightGBM plus segment‑specific models blended per row
 - **Isotonic‑calibrated blend**: mean AUC `0.869758` (**+0.000684**)
 - **Conclusion**: Isotonic calibration improves the blend and is the current best.
 
+## Feature‑Engineered + Isotonic‑Calibrated Blend
+- **LGBM + features**: mean AUC `0.86736`
+- **CatBoost + features**: mean AUC `0.86825`
+- **Isotonic‑calibrated blend (features)**: mean AUC `0.87002`
+- **Conclusion**: New best CV result; should be current submission candidate.
+
 ## Rule‑Augmented Post‑Processing
 - **Base blend**: mean AUC `0.869073`
 - **Doctor‑only rule best**: mean AUC `0.869075` (delta `+0.000002`)
@@ -73,6 +79,6 @@ Segmenting uses a global LightGBM plus segment‑specific models blended per row
 - **Conclusion**: No actionable drift; CV likely representative.
 
 ## Overall Best So Far
-- **Best CV score**: Isotonic‑calibrated blend at **mean AUC `0.869758`**
-- **Promising add‑ons**: survey‑structure features, `health_worker` segmentation (modest)
+- **Best CV score**: Feature‑engineered + isotonic‑calibrated blend at **mean AUC `0.87002`**
+- **Promising add‑ons**: `health_worker` segmentation (modest)
 
